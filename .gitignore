@@ -1,0 +1,6 @@
+dist
+node_modules
+typings
+*.swp
+npm-debug.log
+src/**/*.js
