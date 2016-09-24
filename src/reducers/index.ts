@@ -19,8 +19,11 @@ function counter (state: Store.Counter = initialState, action: Action): Store.Co
   const { value } = state
   switch (action.type) {
     case 'INCREMENT_COUNTER':
-      const newValue = value + action.delta
-      return { value: newValue }
+      const { delta } = action
+      return { value: value + delta }
+
+    case 'RESET_COUNTER':
+      return { value: 0 }
   }
 
   return state

@@ -2,8 +2,7 @@ export type Action = {
   type: 'INCREMENT_COUNTER',
   delta: number,
 } | {
-  type: 'DECREMENT_COUNTER',
-  delta: number,
+  type: 'RESET_COUNTER',
 }
 
 export const incrementCounter = (delta: number): Action => ({
@@ -11,7 +10,6 @@ export const incrementCounter = (delta: number): Action => ({
   delta,
 })
 
-export const decrementCounter = (delta: number): Action => ({
-  type: 'DECREMENT_COUNTER',
-  delta,
+export const resetCounter = (): Action => ({
+  type: 'RESET_COUNTER',
 })
