@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch: redux.Dispatch<Store.All>): ConnectedDispa
 
 class CounterComponent extends React.Component<ConnectedState & ConnectedDispatch & OwnProps, {}> {
 
-  _onClickIncrement = (e: Event) => {
+  _onClickIncrement = (e: React.SyntheticEvent) => {
     e.preventDefault()
     this.props.increment(1)
   }
