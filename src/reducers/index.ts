@@ -1,9 +1,6 @@
 import { combineReducers } from 'redux'
 
-import {
-  IncrementCounter,
-  DecrementCounter,
-} from '../actions'
+import { Action } from '../actions'
 
 export namespace Store {
 
@@ -18,12 +15,11 @@ const initialState: Store.Counter = {
   value: 0,
 }
 
-function counter (state: Store.Counter = initialState, action: IncrementCounter | DecrementCounter): Store.Counter {
+function counter (state: Store.Counter = initialState, action: Action): Store.Counter {
   const { value } = state
   switch (action.type) {
-    case 'INCREMENT_COUNTER': // not checked, pending Microsoft/TypeScript#9407
-      const { payload } = action as IncrementCounter
-      const newValue = value + payload.delta
+    case 'INCREMENT_COUNTER':
+      const newValue = value + action.delta
       return { value: newValue }
   }
 

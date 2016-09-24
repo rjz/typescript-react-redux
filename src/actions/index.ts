@@ -1,24 +1,17 @@
-export interface Action<T, P> {
-  type: T
-  payload?: P
+export type Action = {
+  type: 'INCREMENT_COUNTER',
+  delta: number,
+} | {
+  type: 'DECREMENT_COUNTER',
+  delta: number,
 }
 
-type CounterActionTypes = 'INCREMENT_COUNTER' | 'DECREMENT_COUNTER'
-
-type IncrementCounterPayload = { delta: number }
-
-export type IncrementCounter = Action<CounterActionTypes, IncrementCounterPayload>
-
-export const incrementCounter = (delta: number): IncrementCounter => ({
+export const incrementCounter = (delta: number): Action => ({
   type: 'INCREMENT_COUNTER',
-  payload: { delta },
+  delta,
 })
 
-type DecrementCounterPayload = { delta: number }
-
-export type DecrementCounter = Action<CounterActionTypes, DecrementCounterPayload>
-
-export const decrementCounter = (delta: number): DecrementCounter => ({
-  type: 'INCREMENT_COUNTER',
-  payload: { delta },
+export const decrementCounter = (delta: number): Action => ({
+  type: 'DECREMENT_COUNTER',
+  delta,
 })

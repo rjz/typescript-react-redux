@@ -5,15 +5,15 @@ import { connect } from 'react-redux'
 import { incrementCounter } from '../actions'
 import { Store } from '../reducers'
 
-interface OwnProps {
+type OwnProps = {
   label: string
 }
 
-interface ConnectedState {
+type ConnectedState = {
   counter: { value: number }
 }
 
-interface ConnectedDispatch {
+type ConnectedDispatch = {
   increment: (n: number) => void
 }
 
@@ -22,14 +22,15 @@ const mapStateToProps = (state: Store.All, ownProps: OwnProps): ConnectedState =
 })
 
 const mapDispatchToProps = (dispatch: redux.Dispatch<Store.All>): ConnectedDispatch => ({
-  increment: (n: number) => {
+  increment: (n: number): void => {
     dispatch(incrementCounter(n))
   },
 })
 
 class CounterComponent extends React.Component<ConnectedState & ConnectedDispatch & OwnProps, {}> {
 
-  _onClickIncrement = () => {
+  _onClickIncrement = (e: Event) => {
+    e.preventDefault()
     this.props.increment(1)
   }
 
