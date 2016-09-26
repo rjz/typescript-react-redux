@@ -16,17 +16,20 @@ const initialState: Store.Counter = {
 }
 
 function counter (state: Store.Counter = initialState, action: Action): Store.Counter {
-  const { value } = state
   switch (action.type) {
     case 'INCREMENT_COUNTER':
       const { delta } = action
-      return { value: value + delta }
+      return { value: state.value + delta }
 
     case 'RESET_COUNTER':
       return { value: 0 }
-  }
 
-  return state
+    case 'LOAD_COUNT_SUCCESS':
+      return { value: action.response.value }
+
+    default:
+      return state
+  }
 }
 
 export const reducers = combineReducers<Store.All>({

@@ -1,6 +1,6 @@
 import * as React from 'react' // tslint:disable-line
 import * as ReactDOM from 'react-dom'
-import * as Redux from 'redux'
+import * as redux from 'redux'
 import { Provider } from 'react-redux'
 
 import {
@@ -10,7 +10,13 @@ import {
 
 import { Counter } from './components/counter'
 
-let store: Redux.Store<Store.All> = Redux.createStore(reducers)
+import { apiMiddleware } from './middleware'
+
+const middleware = redux.applyMiddleware(
+  apiMiddleware
+)
+
+let store: redux.Store<Store.All> = redux.createStore(reducers, {} as Store.All, middleware)
 
 // Commented out ("let HTML app be HTML app!")
 window.addEventListener('DOMContentLoaded', () => {

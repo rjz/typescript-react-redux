@@ -45,10 +45,10 @@ describe('components/Counter', () => {
 
     beforeEach(() => {
       counter = setup()
-      const buttonEl = TestUtils.findRenderedDOMComponentWithTag(counter, 'button')
-      TestUtils.Simulate.click(buttonEl)
-      TestUtils.Simulate.click(buttonEl)
-      TestUtils.Simulate.click(buttonEl)
+      const [ increment ] = TestUtils.scryRenderedDOMComponentsWithTag(counter, 'button')
+      TestUtils.Simulate.click(increment)
+      TestUtils.Simulate.click(increment)
+      TestUtils.Simulate.click(increment)
     })
 
     it('increments counter', () => {

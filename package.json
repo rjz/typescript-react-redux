@@ -22,6 +22,7 @@
     "redux": "^3.5.2"
   },
   "devDependencies": {
+    "es6-promise": "^3.2.1",
     "jasmine-core": "2.4.1",
     "karma": "^1.1.2",
     "karma-jasmine": "1.0.2",

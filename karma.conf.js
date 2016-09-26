@@ -12,6 +12,10 @@ module.exports = function(config) {
     basePath: '',
     frameworks: ['jasmine', 'sinon'],
     files: [
+      // polyfill features for phantom
+      'node_modules/es6-promise/dist/es6-promise.js',
+
+      // source files
       'src/**/__tests__/*spec.ts',
       'src/**/__tests__/*spec.tsx'
     ],
