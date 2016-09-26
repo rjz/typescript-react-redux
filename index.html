@@ -4,14 +4,58 @@
     <title>Counter Demo</title>
   </head>
   <body>
-    <div id="redux-app-root">
-      Try building the demo:
-      <pre>
-      </pre>
-      ...and refreshing this page!
+    <div class="demo">
+      <div id="redux-app-root">
+        Try building the demo:
+        <pre>
+        </pre>
+        ...and refreshing this page!
+      </div>
     </div>
     <script src="node_modules/react/dist/react.js"></script>
     <script src="node_modules/react-dom/dist/react-dom.js"></script>
     <script src="dist/bundle.js"></script>
+
+    <link rel="stylesheet" href="node_modules/zakalwe/zakalwe.css" />
+<style>
+.demo {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  border: 1px solid #231f20;
+  border-radius: 3px;
+  background: #fff;
+  margin: 10px;
+  padding: 10px 20px;
+  transition: all linear 0.2s;
+}
+
+button:focus {
+  outline:none;
+}
+
+button:active {
+  background-color:#1982d1;
+  border:1px solid #1982d1;
+  color:#fff;
+  transition: all linear 0.2s;
+}
+
+button[disabled] {
+  border-color:#ccc;
+  color:#ccc;
+  font-style:italic;
+}
+
+button[disabled]:active {
+  background: #fff;
+  border-color:#ccc;
+}
+
+</style>
   </body>
 </html>
