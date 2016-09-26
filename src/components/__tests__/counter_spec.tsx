@@ -30,12 +30,12 @@ describe('components/Counter', () => {
   it('starts at 0', () => {
     const counter = setup()
     const pre = TestUtils.findRenderedDOMComponentWithTag(counter, 'pre')
-    expect(pre.textContent).toEqual('counter = 0')
+    expect(JSON.parse(pre.textContent).counter.value).toEqual(0)
   })
 
   it('shows a label', () => {
     const counter = setup()
-    const label = TestUtils.findRenderedDOMComponentWithTag(counter, 'label')
+    const label = TestUtils.findRenderedDOMComponentWithTag(counter, 'legend')
     expect(label.textContent).toEqual('a counter!')
   })
 
@@ -53,7 +53,7 @@ describe('components/Counter', () => {
 
     it('increments counter', () => {
       const pre = TestUtils.findRenderedDOMComponentWithTag(counter, 'pre')
-      expect(pre.textContent).toEqual('counter = 3')
+      expect(JSON.parse(pre.textContent).counter.value).toEqual(3)
     })
   })
 })

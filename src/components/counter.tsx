@@ -16,6 +16,9 @@ type OwnProps = {
 
 type ConnectedState = {
   counter: { value: number }
+  isSaving: boolean,
+  isLoading: boolean,
+  error: string,
 }
 
 type ConnectedDispatch = {
@@ -26,6 +29,9 @@ type ConnectedDispatch = {
 
 const mapStateToProps = (state: Store.All, ownProps: OwnProps): ConnectedState => ({
   counter: state.counter,
+  isSaving: state.isSaving,
+  isLoading: state.isLoading,
+  error: state.error,
 })
 
 const mapDispatchToProps = (dispatch: redux.Dispatch<Store.All>): ConnectedDispatch => ({
@@ -46,23 +52,28 @@ class CounterComponent extends React.Component<ConnectedState & ConnectedDispatc
 
   _onClickSave = (e: React.SyntheticEvent) => {
     e.preventDefault()
-    this.props.save(this.props.counter.value)
+    if (!this.props.isSaving) {
+      this.props.save(this.props.counter.value)
+    }
   }
 
   _onClickLoad = (e: React.SyntheticEvent) => {
     e.preventDefault()
-    this.props.load()
+    if (!this.props.isLoading) {
+      this.props.load()
+    }
   }
 
   render () {
-    const { counter, label } = this.props
-    return <div>
-      <label>{label}</label>
-      <pre>counter = {counter.value}</pre>
+    const { counter, label, isSaving, isLoading, error } = this.props
+    return <form>
+      <legend>{label}</legend>
+      <pre>{JSON.stringify({ counter, isSaving, isLoading }, null, 2)}</pre>
       <button ref='increment' onClick={this._onClickIncrement}>click me!</button>
-      <button ref='save' onClick={this._onClickSave}>save</button>
-      <button ref='load' onClick={this._onClickLoad}>load</button>
-    </div>
+      <button ref='save' disabled={isSaving} onClick={this._onClickSave}>{isSaving ? 'saving...' : 'save'}</button>
+      <button ref='load' disabled={isLoading} onClick={this._onClickLoad}>{ isLoading ? 'loading...' : 'load'}</button>
+      { error ? <div className='error'>{error}</div> : null }
+    </form>
   }
 }
 

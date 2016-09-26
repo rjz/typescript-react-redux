@@ -38,7 +38,7 @@ describe('apiMiddleware', () => {
         saveStub.restore()
         expect(actual.type).toEqual('SAVE_COUNT_SUCCESS')
         done()
-      }))(empty)(saveCount.request())
+      }))(empty)(saveCount.request({ value: 13 }))
     })
 
   })
@@ -62,6 +62,4 @@ describe('apiMiddleware', () => {
       }))(empty)(loadCount.request())
     })
   })
-
-
 })

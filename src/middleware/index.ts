@@ -14,7 +14,8 @@ export const apiMiddleware = ({ dispatch }: redux.MiddlewareAPI<any>) =>
       switch (action.type) {
 
         case 'SAVE_COUNT_REQUEST':
-          api.save(action.request)
+          const { value } = action.request
+          api.save({ value })
             .then(() => dispatch(saveCount.success({}, action.request)))
             .catch((e) => dispatch(saveCount.error(e, action.request)))
           break
