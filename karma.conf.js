@@ -13,7 +13,7 @@ module.exports = function(config) {
     frameworks: ['jasmine', 'sinon'],
     files: [
       // polyfill features for phantom
-      'node_modules/es6-promise/dist/es6-promise.js',
+      'node_modules/babel-polyfill/dist/polyfill.js',
 
       // source files
       'src/**/__tests__/*spec.ts',
