@@ -43,6 +43,6 @@
     "typings": "1.3.2",
     "webpack": "^1.13.1",
     "webpack-fail-plugin": "^1.0.5",
-    "zakalwe": "git+ssh://git@github.com/rjz/zakalwe.git"
+    "zakalwe": "https://github.com/rjz/zakalwe.git"
   }
 }
