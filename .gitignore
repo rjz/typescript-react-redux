@@ -4,3 +4,4 @@ typings
 *.swp
 npm-debug.log
 src/**/*.js
+coverage

@@ -4,6 +4,8 @@ import { apiMiddleware } from '../'
 
 import { api } from '../../api'
 
+import * as sinon from 'sinon'
+
 import {
   Action,
   loadCount,
