@@ -20,6 +20,8 @@ Install and build demo:
 
 ## Tests
 
+[![Build Status](https://travis-ci.org/rjz/typescript-react-redux.svg?branch=feature%2Fci)](https://travis-ci.org/rjz/typescript-react-redux) [![Coverage Status](https://coveralls.io/repos/github/rjz/typescript-react-redux/badge.svg?branch=feature%2Fci)](https://coveralls.io/github/rjz/typescript-react-redux?branch=feature%2Fci)
+
     $ npm test
 
 [article-1]: https://rjzaworski.com/2016/08/getting-started-with-redux-and-typescript
