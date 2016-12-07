@@ -9,6 +9,5 @@
   },
   "files": [
     "typings/index.d.ts"
-  ],
-  "exclude": []
+  ]
 }

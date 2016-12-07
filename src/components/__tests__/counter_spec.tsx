@@ -22,7 +22,8 @@ describe('components/Counter', () => {
     const wrapper = renderElement(
       <Provider store={store}>
         <Counter label='a counter!' />
-      </Provider>)
+      </Provider>
+    )
     const counter = findComponentByType(wrapper, Counter)
     return counter
   }
@@ -39,19 +40,14 @@ describe('components/Counter', () => {
     expect(label.textContent).toEqual('a counter!')
   })
 
-
   describe('clicking "increment"', () => {
-    let counter: React.Component<{}, {}>
-
-    beforeEach(() => {
-      counter = setup()
+    it('increments counter', () => {
+      const counter = setup()
       const [ increment ] = TestUtils.scryRenderedDOMComponentsWithTag(counter, 'button')
       TestUtils.Simulate.click(increment)
       TestUtils.Simulate.click(increment)
       TestUtils.Simulate.click(increment)
-    })
 
-    it('increments counter', () => {
       const pre = TestUtils.findRenderedDOMComponentWithTag(counter, 'pre')
       expect(JSON.parse(pre.textContent).counter.value).toEqual(3)
     })
