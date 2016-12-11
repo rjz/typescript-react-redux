@@ -5,9 +5,10 @@ application.
 
 Related articles:
 
-  1. [TypeScript and Redux][article-1]
-  2. [Adding React to the Redux App][article-2]
-  3. [Adding middleware][article-3]
+  1. [TypeScript and Redux: getting started][article-1]
+  2. [TypeScript and Redux: adding React][article-2]
+  3. [TypeScript and Redux: async actions][article-3]
+  4. [TypeScript and Redux: unit testing with Jest][article-4]
 
 ## Usage
 
@@ -27,3 +28,4 @@ Install and build demo:
 [article-1]: https://rjzaworski.com/2016/08/getting-started-with-redux-and-typescript
 [article-2]: https://rjzaworski.com/2016/08/typescript-redux-and-react
 [article-3]: https://rjzaworski.com/2016/09/typescript-redux-async-actions
+[article-4]: https://rjzaworski.com/2016/12/testing-typescript-with-jest
