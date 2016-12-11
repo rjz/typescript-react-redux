@@ -1,0 +1,24 @@
+exports[`components/Counter renders 1`] = `
+<CounterComponent
+  counter={
+    Object {
+      "value": 0,
+    }
+  }
+  error=""
+  increment={[Function]}
+  isLoading={false}
+  isSaving={false}
+  label="a counter!"
+  load={[Function]}
+  save={[Function]}
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  } />
+`;
