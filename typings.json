@@ -1,13 +1,11 @@
 {
   "name": "typescript-react-redux",
   "globalDependencies": {
-    "jasmine": "registry:dt/jasmine#2.2.0+20160621224255",
-    "react": "registry:dt/react#0.14.0+20160805125551",
-    "react-addons-test-utils": "registry:dt/react-addons-test-utils#0.14.0+20160427035638",
-    "react-dom": "registry:dt/react-dom#0.14.0+20160412154040",
-    "sinon": "registry:dt/sinon#1.16.0+20160924120326"
+    "jasmine": "registry:dt/jasmine#2.5.0+20161228223817",
+    "sinon": "registry:dt/sinon#1.16.1+20161208163514"
   },
   "dependencies": {
+    "react-addons-test-utils": "registry:dt/react-addons-test-utils#0.14.0+20161229235626",
     "react-redux": "registry:npm/react-redux#4.4.0+20160614222153"
   }
 }
