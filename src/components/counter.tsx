@@ -45,19 +45,19 @@ const mapDispatchToProps = (dispatch: redux.Dispatch<Store.All>): ConnectedDispa
 
 class CounterComponent extends React.Component<ConnectedState & ConnectedDispatch & OwnProps, {}> {
 
-  _onClickIncrement = (e: React.SyntheticEvent) => {
+  _onClickIncrement = (e: React.SyntheticEvent<HTMLButtonElement>) => {
     e.preventDefault()
     this.props.increment(1)
   }
 
-  _onClickSave = (e: React.SyntheticEvent) => {
+  _onClickSave = (e: React.SyntheticEvent<HTMLButtonElement>) => {
     e.preventDefault()
     if (!this.props.isSaving) {
       this.props.save(this.props.counter.value)
     }
   }
 
-  _onClickLoad = (e: React.SyntheticEvent) => {
+  _onClickLoad = (e: React.SyntheticEvent<HTMLButtonElement>) => {
     e.preventDefault()
     if (!this.props.isLoading) {
       this.props.load()
