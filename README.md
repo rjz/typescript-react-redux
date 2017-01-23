@@ -9,6 +9,7 @@ Related articles:
   2. [TypeScript and Redux: adding React][article-2]
   3. [TypeScript and Redux: async actions][article-3]
   4. [TypeScript and Redux: unit testing with Jest][article-4]
+  5. [Integrating TypeScript and redux-thunk][article-5]
 
 ## Usage
 
@@ -30,3 +31,4 @@ Install and build demo:
 [article-2]: https://rjzaworski.com/2016/08/typescript-redux-and-react
 [article-3]: https://rjzaworski.com/2016/09/typescript-redux-async-actions
 [article-4]: https://rjzaworski.com/2016/12/testing-typescript-with-jest
+[article-5]: https://rjzaworski.com/2017/01/typescript-redux-thunk

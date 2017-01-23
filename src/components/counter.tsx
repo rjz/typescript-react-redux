@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 
 import {
   incrementCounter,
-  saveCount,
   loadCount,
+  saveCount,
 } from '../actions'
 
 import { Store } from '../reducers'
@@ -38,9 +38,9 @@ const mapDispatchToProps = (dispatch: redux.Dispatch<Store.All>): ConnectedDispa
   increment: (n: number) =>
     dispatch(incrementCounter(n)),
   load: () =>
-    dispatch(loadCount.request()),
+    dispatch(loadCount(null)),
   save: (value: number) =>
-    dispatch(saveCount.request({ value })),
+    dispatch(saveCount({ value })),
 })
 
 class CounterComponent extends React.Component<ConnectedState & ConnectedDispatch & OwnProps, {}> {

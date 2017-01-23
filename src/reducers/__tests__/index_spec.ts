@@ -3,7 +3,6 @@ import { createStore } from 'redux'
 import { reducers } from '../index'
 import {
   incrementCounter,
-  loadCount,
 } from '../../actions'
 
 describe('reducers/counter', () => {
@@ -30,7 +29,9 @@ describe('reducers/counter', () => {
       expect(counter.value).toEqual(14)
       done()
     })
-    store.dispatch(loadCount.success({ value: 14 }))
+    store.dispatch({
+      type: 'LOAD_COUNT_SUCCESS',
+      request: {},
+      response: { value: 14 } })
   })
-
 })
