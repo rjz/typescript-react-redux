@@ -69,4 +69,4 @@ function apiActionGroupFactory<Q, S>(x: ApiActionGroup<Q, S>, go: apiFunc<Q, S>)
 }
 
 export const saveCount = apiActionGroupFactory(_saveCount, api.save)
-export const loadCount = apiActionGroupFactory(_loadCount, api.load)
+export const loadCount = () => apiActionGroupFactory(_loadCount, api.load)(null)

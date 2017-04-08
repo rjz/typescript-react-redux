@@ -18,7 +18,12 @@ const flakify = <T>(f: () => T): Promise<T> =>
     }, 200 + Math.random() * 2000)
   )
 
-export const api = {
+export type Api = {
+  save(x: { value: number }): Promise<null>,
+  load(): (Promise<{ value: number }>),
+}
+
+export const api: Api = {
   save: (counter: { value: number }): Promise<null> => flakify(() => {
       localStorage.setItem('__counterValue', counter.value.toString())
       return null
