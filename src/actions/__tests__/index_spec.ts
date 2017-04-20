@@ -1,8 +1,10 @@
 jest.mock('../../api')
 
 import { createStore } from 'redux'
-import { api } from '../../api'
+import * as apiExports from '../../api'
 import * as actions from '../index'
+
+const api: jest.Mocked<apiExports.Api> = apiExports.api as any
 
 describe('actions', () => {
   const store = () => {
@@ -34,7 +36,7 @@ describe('actions', () => {
     })
 
     it('sends an API request', () => {
-      actions.saveCount({ value: '14' })(jest.fn())
+      actions.saveCount({ value: 14 })(jest.fn())
       expect(api.save.mock.calls.length).toEqual(1)
     })
 
