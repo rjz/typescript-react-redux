@@ -1,15 +1,17 @@
 <!doctype html>
 <html>
   <head>
-    <title>Counter Demo</title>
+    <title>TypeScript, React, and Redux - Counter Demo</title>
   </head>
   <body>
+    <h1>Counter Demo</h1>
     <div class="demo">
       <div id="redux-app-root">
-        Try building the demo:
+        Build the demo:
         <pre>
+$ npm run build
         </pre>
-        ...and refreshing this page!
+        ...and <a href="javascript:window.location.reload()">refresh</a> this page!
       </div>
     </div>
     <script src="node_modules/react/dist/react.js"></script>
@@ -19,10 +21,18 @@
     <link rel="stylesheet" href="node_modules/zakalwe/zakalwe.css" />
 <style>
 .demo {
-  height: 95vh;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.hero {
+  font-size: 96pt;
+  font-weight: bold;
+  font-family: courier, mono;
+  line-height: 0.5em;
+  height: 0.9em;
+  text-align: center;
 }
 
 .error {
@@ -35,9 +45,12 @@ button {
   border: 1px solid #231f20;
   border-radius: 3px;
   background: #fff;
+  cursor: pointer;
   margin: 10px;
-  padding: 10px 20px;
+  padding: 10px;
   transition: all linear 0.2s;
+  width: 128px;
+  text-align: center;
 }
 
 button:focus {
@@ -74,6 +87,7 @@ footer {
     <section class="container copyright">
       Another unrepentant production from
       <a href="https://rjzaworski.com">rj zaworski</a>
+      &middot; <a href="https://github.com/rjz/typescript-react-redux">source code</a>
       <!-- :^) -->
     </section>
   </footer>
