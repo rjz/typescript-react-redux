@@ -22,7 +22,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const rootEl = document.getElementById('redux-app-root')
   if (rootEl) ReactDOM.render(
     <Provider store={store}>
-      <Counter label='count:' />
+      <Counter label='state' />
     </Provider>
   , rootEl)
 })
