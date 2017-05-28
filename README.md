@@ -1,9 +1,9 @@
 # Typescript + React + Redux
 
-A dead-simple counter to demonstrate structure of a TypeScript-enabled redux
-application.
+All the concepts and tooling you'll need to get started, packed into one tiny
+counter.
 
-Related articles:
+With step-by-step instructions:
 
   1. [TypeScript and Redux: getting started][article-1]
   2. [TypeScript and Redux: adding React][article-2]
@@ -11,9 +11,11 @@ Related articles:
   4. [TypeScript and Redux: unit testing with Jest][article-4]
   5. [Integrating TypeScript and redux-thunk][article-5]
 
+And a live [demo][demo].
+
 ## Usage
 
-Install and build demo:
+Install and build demo application:
 
     $ npm install
     $ npm run build
@@ -27,6 +29,15 @@ Install and build demo:
 
     $ npm test
 
+## Issues?
+
+[Let's solve 'em!](https://github.com/rjz/typescript-react-redux/issues/new)
+
+## License
+
+MIT
+
+[demo]: https://rjz.github.io/typescript-react-redux
 [article-1]: https://rjzaworski.com/2016/08/getting-started-with-redux-and-typescript
 [article-2]: https://rjzaworski.com/2016/08/typescript-redux-and-react
 [article-3]: https://rjzaworski.com/2016/09/typescript-redux-async-actions
