@@ -29,7 +29,9 @@ export const api: Api = {
       return null
     }),
   load: (): Promise<{ value: number }> => flakify(() => {
-      const value = parseInt(localStorage.getItem('__counterValue'), 10)
-      return { value }
+      const storedValue = parseInt(localStorage.getItem('__counterValue'), 10)
+      return {
+        value: storedValue || 0,
+      }
     }),
 }

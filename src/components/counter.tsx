@@ -11,7 +11,6 @@ import {
 import { Store } from '../reducers'
 
 type OwnProps = {
-  label: string
 }
 
 type ConnectedState = {
@@ -65,15 +64,25 @@ class CounterComponent extends React.Component<ConnectedState & ConnectedDispatc
   }
 
   render () {
-    const { counter, label, isSaving, isLoading, error } = this.props
-    return <form>
-      <legend>{label}</legend>
-      <pre>{JSON.stringify({ counter, isSaving, isLoading }, null, 2)}</pre>
-      <button ref='increment' onClick={this._onClickIncrement}>click me!</button>
-      <button ref='save' disabled={isSaving} onClick={this._onClickSave}>{isSaving ? 'saving...' : 'save'}</button>
-      <button ref='load' disabled={isLoading} onClick={this._onClickLoad}>{ isLoading ? 'loading...' : 'load'}</button>
-      { error ? <div className='error'>{error}</div> : null }
-    </form>
+    const { counter, isSaving, isLoading, error } = this.props
+    return <div>
+      <div className='hero'>
+        <strong>{counter.value}</strong>
+      </div>
+      <form>
+        <button ref='increment' onClick={this._onClickIncrement}>click me!</button>
+        <button ref='save' disabled={isSaving} onClick={this._onClickSave}>{isSaving ? 'saving...' : 'save'}</button>
+        <button ref='load' disabled={isLoading} onClick={this._onClickLoad}>{ isLoading ? 'loading...' : 'load'}</button>
+        { error ? <div className='error'>{error}</div> : null }
+        <pre>
+          {JSON.stringify({
+            counter,
+            isSaving,
+            isLoading,
+          }, null, 2)}
+        </pre>
+      </form>
+    </div>
   }
 }
 
