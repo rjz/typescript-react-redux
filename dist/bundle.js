@@ -58,7 +58,7 @@
 	// Commented out ("let HTML app be HTML app!")
 	window.addEventListener('DOMContentLoaded', function () {
 	    var rootEl = document.getElementById('redux-app-root');
-	    if (rootEl) ReactDOM.render(React.createElement(react_redux_1.Provider, { store: store }, React.createElement(counter_1.Counter, { label: 'count:' })), rootEl);
+	    if (rootEl) ReactDOM.render(React.createElement(react_redux_1.Provider, { store: store }, React.createElement(counter_1.Counter, null)), rootEl);
 	});
 
 /***/ },
@@ -2657,7 +2657,7 @@
 	            return dispatch(actions_1.incrementCounter(n));
 	        },
 	        load: function load() {
-	            return dispatch(actions_1.loadCount(null));
+	            return dispatch(actions_1.loadCount());
 	        },
 	        save: function save(value) {
 	            return dispatch(actions_1.saveCount({ value: value }));
@@ -2697,12 +2697,15 @@
 	        value: function render() {
 	            var _props = this.props,
 	                counter = _props.counter,
-	                label = _props.label,
 	                isSaving = _props.isSaving,
 	                isLoading = _props.isLoading,
 	                error = _props.error;
 	
-	            return React.createElement("form", null, React.createElement("legend", null, label), React.createElement("pre", null, JSON.stringify({ counter: counter, isSaving: isSaving, isLoading: isLoading }, null, 2)), React.createElement("button", { ref: 'increment', onClick: this._onClickIncrement }, "click me!"), React.createElement("button", { ref: 'save', disabled: isSaving, onClick: this._onClickSave }, isSaving ? 'saving...' : 'save'), React.createElement("button", { ref: 'load', disabled: isLoading, onClick: this._onClickLoad }, isLoading ? 'loading...' : 'load'), error ? React.createElement("div", { className: 'error' }, error) : null);
+	            return React.createElement("div", null, React.createElement("div", { className: 'hero' }, React.createElement("strong", null, counter.value)), React.createElement("form", null, React.createElement("button", { ref: 'increment', onClick: this._onClickIncrement }, "click me!"), React.createElement("button", { ref: 'save', disabled: isSaving, onClick: this._onClickSave }, isSaving ? 'saving...' : 'save'), React.createElement("button", { ref: 'load', disabled: isLoading, onClick: this._onClickLoad }, isLoading ? 'loading...' : 'load'), error ? React.createElement("div", { className: 'error' }, error) : null, React.createElement("pre", null, JSON.stringify({
+	                counter: counter,
+	                isSaving: isSaving,
+	                isLoading: isLoading
+	            }, null, 2))));
 	        }
 	    }]);
 	
@@ -2806,8 +2809,10 @@
 	    },
 	    load: function load() {
 	        return flakify(function () {
-	            var value = parseInt(localStorage.getItem('__counterValue'), 10);
-	            return { value: value };
+	            var storedValue = parseInt(localStorage.getItem('__counterValue'), 10);
+	            return {
+	                value: storedValue || 0
+	            };
 	        });
 	    }
 	};

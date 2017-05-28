@@ -11,3 +11,7 @@ rm -rf ${FILES}
 
 # Add referenced files
 cat index.html | grep -o '"node_modules.*"' | xargs git add -f
+
+git add -u
+
+git commit -m 'Rebuilds gh-pages'
