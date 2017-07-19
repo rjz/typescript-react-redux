@@ -54,15 +54,6 @@
             "check-separator",
             "check-type"
         ],
-        "no-unused-expression": true,
-        "no-unused-new": true,
-        "no-unused-variable": true,
-        "no-use-before-declare": true,
-        "trailing-comma": [
-          true, {
-            "multiline": "always",
-            "singleline": "never"
-          }
-        ]
+        "no-unused-expression": true
     }
 }

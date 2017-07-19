@@ -1,7 +1,6 @@
 {
   "name": "typescript-react-redux",
   "globalDependencies": {
-    "jasmine": "registry:dt/jasmine#2.5.2+20170317130948",
     "sinon": "registry:dt/sinon#1.16.1+20161208163514"
   },
   "dependencies": {
