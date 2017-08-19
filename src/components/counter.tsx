@@ -10,6 +10,8 @@ import {
 
 import { Store } from '../reducers'
 
+import loadable from '../decorators/loadable'
+
 type OwnProps = {
 }
 
@@ -86,5 +88,9 @@ class CounterComponent extends React.Component<ConnectedState & ConnectedDispatc
   }
 }
 
+const isLoading = (p: ConnectedState & ConnectedDispatch & OwnProps) =>
+  p.isLoading || p.isSaving
+
 // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/8787
-export const Counter: React.ComponentClass<OwnProps> = connect(mapStateToProps, mapDispatchToProps)(CounterComponent)
+export const Counter: React.ComponentClass<OwnProps> =
+  connect(mapStateToProps, mapDispatchToProps)(loadable(isLoading)(CounterComponent))
