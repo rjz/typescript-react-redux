@@ -10,6 +10,8 @@ import {
 
 import { Store } from '../reducers'
 
+import loadable from '../decorators/loadable'
+
 type OwnProps = {
 }
 
@@ -42,7 +44,7 @@ const mapDispatchToProps = (dispatch: redux.Dispatch<Store.All>): ConnectedDispa
     dispatch(saveCount({ value })),
 })
 
-class CounterComponent extends React.Component<ConnectedState & ConnectedDispatch & OwnProps, {}> {
+class PureCounter extends React.Component<ConnectedState & ConnectedDispatch & OwnProps, {}> {
 
   _onClickIncrement = (e: React.SyntheticEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -86,5 +88,12 @@ class CounterComponent extends React.Component<ConnectedState & ConnectedDispatc
   }
 }
 
+const isLoading = (p: ConnectedState & ConnectedDispatch & OwnProps) =>
+  p.isLoading || p.isSaving
+
+// Invoke `loadable` manually pending decorator support
+// See: https://github.com/Microsoft/TypeScript/issues/4881
+const LoadableCounter = loadable(isLoading)(PureCounter)
+
 // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/8787
-export const Counter: React.ComponentClass<OwnProps> = connect(mapStateToProps, mapDispatchToProps)(CounterComponent)
+export const Counter = connect(mapStateToProps, mapDispatchToProps)(LoadableCounter)

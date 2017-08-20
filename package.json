@@ -9,7 +9,7 @@
   },
   "scripts": {
     "setup": "typings install",
-    "start": "http-server",
+    "start": "http-server -c-1",
     "build": "npm run setup && npm run test && webpack",
     "watch": "webpack --watch",
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
