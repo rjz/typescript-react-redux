@@ -8,7 +8,7 @@ import {
   saveCount,
 } from '../actions'
 
-import { Store } from '../reducers'
+import * as state from '../reducers'
 
 import loadable from '../decorators/loadable'
 
@@ -28,14 +28,14 @@ type ConnectedDispatch = {
   load: () => void
 }
 
-const mapStateToProps = (state: Store.All, ownProps: OwnProps): ConnectedState => ({
+const mapStateToProps = (state: state.All, ownProps: OwnProps): ConnectedState => ({
   counter: state.counter,
   isSaving: state.isSaving,
   isLoading: state.isLoading,
   error: state.error,
 })
 
-const mapDispatchToProps = (dispatch: redux.Dispatch<Store.All>): ConnectedDispatch => ({
+const mapDispatchToProps = (dispatch: redux.Dispatch<state.All>): ConnectedDispatch => ({
   increment: (n: number) =>
     dispatch(incrementCounter(n)),
   load: () =>

@@ -4,16 +4,13 @@ import * as redux from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 
-import {
-  reducers,
-  Store,
-} from './reducers'
+import * as state from './reducers'
 
 import { Counter } from './components/counter'
 
-let store: redux.Store<Store.All> = redux.createStore(
-  reducers,
-  {} as Store.All,
+let store: redux.Store<state.All> = redux.createStore(
+  state.reducers,
+  {} as state.All,
   redux.applyMiddleware(thunk),
 )
 

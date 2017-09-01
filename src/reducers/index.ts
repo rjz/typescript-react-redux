@@ -2,16 +2,13 @@ import { combineReducers } from 'redux'
 
 import { Action } from '../actions'
 
-export namespace Store {
+export type Counter = { value: number }
 
-  export type Counter = { value: number }
-
-  export type All = {
-    counter: Counter,
-    isSaving: boolean,
-    isLoading: boolean,
-    error: string,
-  }
+export type All = {
+  counter: Counter,
+  isSaving: boolean,
+  isLoading: boolean,
+  error: string,
 }
 
 function isSaving (state: boolean = false, action: Action): boolean {
@@ -51,11 +48,11 @@ function error (state: string = '', action: Action): string {
   }
 }
 
-const initialState: Store.Counter = {
+const initialState: Counter = {
   value: 0,
 }
 
-function counter (state: Store.Counter = initialState, action: Action): Store.Counter {
+function counter (state: Counter = initialState, action: Action): Counter {
   switch (action.type) {
     case 'INCREMENT_COUNTER':
       const { delta } = action
@@ -72,7 +69,7 @@ function counter (state: Store.Counter = initialState, action: Action): Store.Co
   }
 }
 
-export const reducers = combineReducers<Store.All>({
+export const reducers = combineReducers<All>({
   counter,
   isSaving,
   isLoading,
