@@ -6,6 +6,37 @@ import * as actions from '../index'
 
 const api: jest.Mocked<apiExports.Api> = apiExports.api as any
 
+const eventually = (assertFn) =>
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      try {
+        assertFn()
+      } catch (e) {
+        return reject(e)
+      }
+      resolve()
+    }, 1)
+  })
+
+const expectRequest = (type, request, apiAction) => {
+  expect(apiAction.type).toEqual(type)
+  expect(apiAction.request).toEqual(request)
+  expect(apiAction.error).toBeUndefined()
+  expect(apiAction.response).toBeUndefined()
+}
+
+const expectResponse = (type, response, apiAction) => {
+  expect(apiAction.type).toEqual(type)
+  expect(apiAction.response).toEqual(response)
+  expect(apiAction.response).not.toBeUndefined()
+}
+
+const expectError = (type, error, apiAction) => {
+  expect(apiAction.type).toEqual(type)
+  expect(apiAction.response).toBeUndefined()
+  expect(apiAction.error).toEqual(error)
+}
+
 describe('actions', () => {
   const store = () => {
     const reducer = jest.fn()
@@ -14,25 +45,9 @@ describe('actions', () => {
     return { dispatch, reducer }
   }
 
-  const eventually = (assertFn) =>
-    new Promise((resolve, reject) => {
-      setTimeout(() => {
-        try {
-          assertFn()
-        } catch (e) {
-          return reject(e)
-        }
-        resolve()
-      }, 1)
-    })
-
-  const expectTypes = (reducer, types) =>
-    () =>
-      expect(reducer.mock.calls.map(x => x[1].type)).toEqual(types)
-
   describe('.saveCount', () => {
     beforeEach(() => {
-      api.save.mockReturnValue(Promise.resolve(null))
+      api.save.mockReturnValue(Promise.resolve({}))
     })
 
     it('sends an API request', () => {
@@ -41,13 +56,14 @@ describe('actions', () => {
     })
 
     describe('when API request succeeds', () => {
-      it('dispatches SAVE_COUNT_SUCCESS', () => {
+      it('fills out SAVE_COUNT', () => {
         const { dispatch, reducer } = store()
         actions.saveCount({ value: 14 })(dispatch)
-        return eventually(expectTypes(reducer, [
-          'SAVE_COUNT_REQUEST',
-          'SAVE_COUNT_SUCCESS',
-        ]))
+        return eventually(() => {
+          const actions = reducer.mock.calls.map(x => x[1])
+          expectRequest('SAVE_COUNT', { value: 14 }, actions[0])
+          expectResponse('SAVE_COUNT', {}, actions[1])
+        })
       })
     })
 
@@ -59,26 +75,11 @@ describe('actions', () => {
       it('dispatches SAVE_COUNT_ERROR', () => {
         const { dispatch, reducer } = store()
         actions.saveCount({ value: 14 })(dispatch)
-        return eventually(expectTypes(reducer, [
-          'SAVE_COUNT_REQUEST',
-          'SAVE_COUNT_ERROR',
-        ]))
-      })
 
-      it('includes error message with SAVE_COUNT_ERROR', () => {
-        const { dispatch, reducer } = store()
-        actions.saveCount({ value: 14 })(dispatch)
         return eventually(() => {
-          expect(reducer.mock.calls[1][1].error.message)
-            .toEqual('something terrible happened')
-        })
-      })
-
-      it('includes request with SAVE_COUNT_ERROR for convenience', () => {
-        const { dispatch, reducer } = store()
-        actions.saveCount({ value: 14 })(dispatch)
-        return eventually(() => {
-          expect(reducer.mock.calls[1][1].request).toEqual({ value: 14 })
+          const actions = reducer.mock.calls.map(x => x[1])
+          expectRequest('SAVE_COUNT', { value: 14 }, actions[0])
+          expectError('SAVE_COUNT', 'Error: something terrible happened', actions[1])
         })
       })
     })
@@ -95,13 +96,15 @@ describe('actions', () => {
     })
 
     describe('when API request succeeds', () => {
-      it('dispatches LOAD_COUNT_SUCCESS', () => {
+      it('fills out LOAD_COUNT .response', () => {
         const { dispatch, reducer } = store()
         actions.loadCount()(dispatch)
-        return eventually(expectTypes(reducer, [
-          'LOAD_COUNT_REQUEST',
-          'LOAD_COUNT_SUCCESS',
-        ]))
+
+        return eventually(() => {
+          const actions = reducer.mock.calls.map(x => x[1])
+          expectRequest('LOAD_COUNT', undefined, actions[0])
+          expectResponse('LOAD_COUNT', { value: 14 }, actions[1])
+        })
       })
 
       it('includes new value with LOAD_COUNT_SUCCESS', () => {
@@ -118,21 +121,14 @@ describe('actions', () => {
         api.load.mockReturnValue(Promise.reject(new Error('something terrible happened')))
       })
 
-      it('dispatches LOAD_COUNT_ERROR', () => {
+      it('fills out LOAD_COUNT .error', () => {
         const { dispatch, reducer } = store()
         actions.loadCount()(dispatch)
-        return eventually(expectTypes(reducer, [
-          'LOAD_COUNT_REQUEST',
-          'LOAD_COUNT_ERROR',
-        ]))
-      })
 
-      it('includes error message with LOAD_COUNT_ERROR', () => {
-        const { dispatch, reducer } = store()
-        actions.loadCount()(dispatch)
         return eventually(() => {
-          expect(reducer.mock.calls[1][1].error.message)
-            .toEqual('something terrible happened')
+          const actions = reducer.mock.calls.map(x => x[1])
+          expectRequest('LOAD_COUNT', undefined, actions[0])
+          expectError('LOAD_COUNT', 'Error: something terrible happened', actions[1])
         })
       })
     })

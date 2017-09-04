@@ -30,7 +30,7 @@ describe('reducers/counter', () => {
       done()
     })
     store.dispatch({
-      type: 'LOAD_COUNT_SUCCESS',
+      type: 'LOAD_COUNT',
       request: {},
       response: { value: 14 } })
   })

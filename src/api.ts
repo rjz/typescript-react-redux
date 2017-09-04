@@ -19,16 +19,16 @@ const flakify = <T>(f: () => T): Promise<T> =>
   )
 
 export type Api = {
-  save(x: { value: number }): Promise<null>,
+  save(x: { value: number }): Promise<{}>,
   load(): (Promise<{ value: number }>),
 }
 
 export const api: Api = {
-  save: (counter: { value: number }): Promise<null> => flakify(() => {
+  save: counter => flakify(() => {
       localStorage.setItem('__counterValue', counter.value.toString())
-      return null
+      return {}
     }),
-  load: (): Promise<{ value: number }> => flakify(() => {
+  load: () => flakify(() => {
       const storedValue = parseInt(localStorage.getItem('__counterValue'), 10)
       return {
         value: storedValue || 0,
