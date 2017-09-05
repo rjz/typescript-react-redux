@@ -3,6 +3,8 @@ import * as redux from 'redux'
 import { api } from '../api'
 import * as state from '../reducers/index'
 
+// API actions contain details on the initial request and an eventual error or
+// response
 type APIAction<Q, S> = {
   request?: Q
   response?: S
@@ -14,7 +16,8 @@ export type Action =
    { type: 'INCREMENT_COUNTER', delta: number }
 |  { type: 'RESET_COUNTER' }
 
-// API Requests
+// API Requests implemented as partial actions
+// See: https://goo.gl/FYWGpr
 | ({ type: 'SAVE_COUNT' } & APIAction<{ value: number }, {}>)
 | ({ type: 'LOAD_COUNT' } & APIAction<undefined, { value: number }>)
 
