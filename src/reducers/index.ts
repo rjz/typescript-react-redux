@@ -12,37 +12,27 @@ export type All = {
 }
 
 function isSaving (state: boolean = false, action: Action): boolean {
-  switch (action.type) {
-    case 'SAVE_COUNT_REQUEST':
-      return true
-    case 'SAVE_COUNT_SUCCESS':
-    case 'SAVE_COUNT_ERROR':
-      return false
-    default:
-      return state
+  if (action.type === 'SAVE_COUNT') {
+    // `SAVE_COUNT` is a partial action. We'll check its payload to determine
+    // whether this instance describes its resolution.
+    // See: https://goo.gl/FYWGpr
+    return !action.response && !action.error
   }
+  return state
 }
 
 function isLoading (state: boolean = false, action: Action): boolean {
-  switch (action.type) {
-    case 'LOAD_COUNT_REQUEST':
-      return true
-    case 'LOAD_COUNT_SUCCESS':
-    case 'LOAD_COUNT_ERROR':
-      return false
-    default:
-      return state
+  if (action.type === 'LOAD_COUNT') {
+    return !action.response && !action.error
   }
+  return state
 }
 
 function error (state: string = '', action: Action): string {
   switch (action.type) {
-    case 'LOAD_COUNT_REQUEST':
-    case 'SAVE_COUNT_REQUEST':
-      return ''
-    case 'LOAD_COUNT_ERROR':
-    case 'SAVE_COUNT_ERROR':
-      return action.error.toString()
+    case 'LOAD_COUNT':
+    case 'SAVE_COUNT':
+      return action.error || ''
     default:
       return state
   }
@@ -61,8 +51,14 @@ function counter (state: Counter = initialState, action: Action): Counter {
     case 'RESET_COUNTER':
       return { value: 0 }
 
-    case 'LOAD_COUNT_SUCCESS':
-      return { value: action.response.value }
+    case 'LOAD_COUNT': {
+      const { response } = action
+      if (response) {
+        // If `response` is set, `LOAD_COUNT` is "resolved"
+        // See: https://goo.gl/FYWGpr
+        return { value: response.value }
+      }
+    }
 
     default:
       return state
