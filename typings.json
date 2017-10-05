@@ -1,10 +1,5 @@
 {
   "name": "typescript-react-redux",
-  "globalDependencies": {
-    "sinon": "registry:dt/sinon#1.16.1+20161208163514"
-  },
-  "dependencies": {
-    "react-addons-test-utils": "registry:dt/react-addons-test-utils#0.14.0+20170123203653",
-    "react-redux": "registry:dt/react-redux#4.4.0+20170315101812"
-  }
+  "globalDependencies": {},
+  "dependencies": {}
 }
