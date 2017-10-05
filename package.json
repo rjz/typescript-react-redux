@@ -8,15 +8,13 @@
     "node": ">=7.0.0"
   },
   "scripts": {
-    "setup": "typings install",
     "start": "http-server -c-1",
-    "build": "npm run setup && npm run test && webpack",
+    "build": "npm run test && webpack",
     "watch": "webpack --watch",
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
     "pretest": "npm run lint",
     "test": "jest --coverage"
   },
-  "typings": "typings/index.d.ts",
   "author": "RJ Zaworski <rj@rjzaworski.com> (http://rjzaworski.com)",
   "license": "ISC",
   "dependencies": {
@@ -53,7 +51,6 @@
     "ts-loader": "2.3.7",
     "tslint": "5.7.0",
     "typescript": "2.5.3",
-    "typings": "2.1.1",
     "webpack": "3.6.0",
     "webpack-fail-plugin": "2.0.0",
     "zakalwe": "1.0.3"
