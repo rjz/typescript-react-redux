@@ -5,11 +5,11 @@ counter.
 
 With step-by-step instructions:
 
-  1. [TypeScript and Redux: getting started][article-1]
-  2. [TypeScript and Redux: adding React][article-2]
-  3. [TypeScript and Redux: async actions][article-3]
-  4. [TypeScript and Redux: unit testing with Jest][article-4]
-  5. [Integrating TypeScript and redux-thunk][article-5]
+  1. [TypeScript and Redux: getting started][article-1] ([c75b9f2](https://github.com/rjz/typescript-react-redux/commit/c75b9f2))
+  2. [TypeScript and Redux: adding React][article-2] ([c75b9f2](https://github.com/rjz/typescript-react-redux/commit/c75b9f2))
+  3. [TypeScript and Redux: async actions][article-3] ([92ef3b0](https://github.com/rjz/typescript-react-redux/commit/92ef3b0))
+  4. [TypeScript and Redux: unit testing with Jest][article-4] ([84ff69b](https://github.com/rjz/typescript-react-redux/commit/84ff69b))
+  5. [Integrating TypeScript and redux-thunk][article-5] ([4859392](https://github.com/rjz/typescript-react-redux/commit/4859392))
 
 And a live [demo][demo].
 
