@@ -10,6 +10,7 @@ With step-by-step instructions:
   3. [TypeScript and Redux: async actions][article-3] ([92ef3b0](https://github.com/rjz/typescript-react-redux/commit/92ef3b0))
   4. [TypeScript and Redux: unit testing with Jest][article-4] ([84ff69b](https://github.com/rjz/typescript-react-redux/commit/84ff69b))
   5. [Integrating TypeScript and redux-thunk][article-5] ([4859392](https://github.com/rjz/typescript-react-redux/commit/4859392))
+  6. [DRY-ing up with higher order components][article-6] ([002e3bd](https://github.com/rjz/typescript-react-redux/commit/002e3bd))
 
 And a live [demo][demo].
 
@@ -43,3 +44,4 @@ MIT
 [article-3]: https://rjzaworski.com/2016/09/typescript-redux-async-actions
 [article-4]: https://rjzaworski.com/2016/12/testing-typescript-with-jest
 [article-5]: https://rjzaworski.com/2017/01/typescript-redux-thunk
+[article-6]: https://rjzaworski.com/2017/09/typescript-react-compose
