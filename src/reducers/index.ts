@@ -48,11 +48,11 @@ function error (state: string = '', action: Action): string {
   }
 }
 
-const initialState: Counter = {
+const counterState: Counter = {
   value: 0,
 }
 
-function counter (state: Counter = initialState, action: Action): Counter {
+function counter (state: Counter = counterState, action: Action): Counter {
   switch (action.type) {
     case 'INCREMENT_COUNTER':
       const { delta } = action
@@ -69,9 +69,18 @@ function counter (state: Counter = initialState, action: Action): Counter {
   }
 }
 
-export const reducers = combineReducers<All>({
+export const initialState = {
+  counter: counterState,
+  isSaving: false,
+  isLoading: false,
+  error: '',
+}
+
+const reducers = combineReducers<All>({
   counter,
   isSaving,
   isLoading,
   error,
 })
+
+export default reducers

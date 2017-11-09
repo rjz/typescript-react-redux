@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`reducers/counter increments 1`] = `
+Object {
+  "counter": Object {
+    "value": 6,
+  },
+  "error": "",
+  "isLoading": false,
+  "isSaving": false,
+}
+`;
+
+exports[`reducers/counter restores state 1`] = `
+Object {
+  "counter": Object {
+    "value": 14,
+  },
+  "error": "",
+  "isLoading": false,
+  "isSaving": false,
+}
+`;
+
+exports[`reducers/counter starts at 0 1`] = `
+Object {
+  "counter": Object {
+    "value": 0,
+  },
+  "error": "",
+  "isLoading": false,
+  "isSaving": false,
+}
+`;
