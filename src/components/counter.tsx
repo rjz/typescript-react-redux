@@ -8,6 +8,7 @@ import {
   saveCount,
 } from '../actions'
 
+import { compose } from '../utils'
 import * as state from '../reducers'
 
 import loadable from '../decorators/loadable'
@@ -15,10 +16,13 @@ import loadable from '../decorators/loadable'
 type OwnProps = {
 }
 
-type ConnectedState = {
-  counter: { value: number }
+type LoadingState = {
   isSaving: boolean,
   isLoading: boolean,
+}
+
+type ConnectedState = LoadingState & {
+  counter: { value: number }
   error: string,
 }
 
@@ -88,12 +92,11 @@ class PureCounter extends React.Component<ConnectedState & ConnectedDispatch & O
   }
 }
 
-const isLoading = (p: ConnectedState & ConnectedDispatch & OwnProps) =>
+const isLoading = (p: LoadingState) =>
   p.isLoading || p.isSaving
 
-// Invoke `loadable` manually pending decorator support
-// See: https://github.com/Microsoft/TypeScript/issues/4881
-const LoadableCounter = loadable(isLoading)(PureCounter)
-
-// https://github.com/DefinitelyTyped/DefinitelyTyped/issues/8787
-export const Counter = connect(mapStateToProps, mapDispatchToProps)(LoadableCounter)
+export const Counter = compose(
+  PureCounter,
+  loadable(isLoading),
+  connect(mapStateToProps, mapDispatchToProps),
+)
