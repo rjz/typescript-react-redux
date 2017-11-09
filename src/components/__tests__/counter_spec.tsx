@@ -6,7 +6,7 @@ import * as ReactShallowRenderer from 'react-test-renderer/shallow'
 import { createStore } from 'redux'
 
 import { Counter } from '../counter'
-import { reducers } from '../../reducers'
+import reducers from '../../reducers'
 
 describe('components/Counter', () => {
 

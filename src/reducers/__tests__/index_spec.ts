@@ -1,37 +1,31 @@
-import { createStore } from 'redux'
+import reducers, {
+  initialState,
+} from '../index'
 
-import { reducers } from '../index'
 import {
-  incrementCounter,
+  incrementCounter
 } from '../../actions'
 
+const resultOf = actions =>
+  actions.reduce(reducers, initialState)
+
 describe('reducers/counter', () => {
-  it('starts at 0', () => {
-    const store = createStore(reducers)
-    const { counter } = store.getState()
-    expect(counter.value).toEqual(0)
-  })
+  it('starts at 0', () =>
+    expect(resultOf([])).toMatchSnapshot())
 
-  it('increments', (done) => {
-    const store = createStore(reducers)
-    store.subscribe(() => {
-      const { counter } = store.getState()
-      expect(counter.value).toEqual(3)
-      done()
-    })
-    store.dispatch(incrementCounter(3))
-  })
+  it('increments', () =>
+    expect(resultOf([
+      incrementCounter(1),
+      incrementCounter(2),
+      incrementCounter(3),
+    ])).toMatchSnapshot())
 
-  it('restores state', (done) => {
-    const store = createStore(reducers)
-    store.subscribe(() => {
-      const { counter } = store.getState()
-      expect(counter.value).toEqual(14)
-      done()
-    })
-    store.dispatch({
-      type: 'LOAD_COUNT_SUCCESS',
-      request: {},
-      response: { value: 14 } })
-  })
+  it('restores state', () =>
+    expect(resultOf([
+      {
+        type: 'LOAD_COUNT_SUCCESS',
+        request: {},
+        response: { value: 14 },
+      }
+    ])).toMatchSnapshot())
 })
