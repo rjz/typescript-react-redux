@@ -3,6 +3,7 @@ var failPlugin = require('webpack-fail-plugin');
 // https://www.typescriptlang.org/docs/handbook/react-&-webpack.html
 module.exports = {
   entry: './src/index.tsx',
+  mode: 'development',
   output: {
     filename: './dist/bundle.js',
   },
@@ -18,7 +19,7 @@ module.exports = {
   plugins: [ failPlugin ],
 
   module: {
-    loaders: [
+    rules: [
       // all files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'.
       { test: /\.tsx?$/, loader: 'babel-loader?presets[]=es2015!ts-loader' },
       { test: /\.js$/, enforce: 'pre', loader: 'source-map-loader' },
