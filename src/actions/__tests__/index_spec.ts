@@ -69,7 +69,7 @@ describe('actions', () => {
         const { dispatch, reducer } = store()
         actions.saveCount({ value: 14 })(dispatch)
         return eventually(() => {
-          expect(reducer.mock.calls[1][1].error.message)
+          expect(reducer.mock.calls[1][1].error)
             .toEqual('something terrible happened')
         })
       })
@@ -131,7 +131,7 @@ describe('actions', () => {
         const { dispatch, reducer } = store()
         actions.loadCount()(dispatch)
         return eventually(() => {
-          expect(reducer.mock.calls[1][1].error.message)
+          expect(reducer.mock.calls[1][1].error)
             .toEqual('something terrible happened')
         })
       })
