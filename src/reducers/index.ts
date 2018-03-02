@@ -42,7 +42,7 @@ function error (state: string = '', action: Action): string {
       return ''
     case 'LOAD_COUNT_ERROR':
     case 'SAVE_COUNT_ERROR':
-      return action.error.toString()
+      return action.error
     default:
       return state
   }
