@@ -29,13 +29,13 @@ export type Api = {
 
 export const api: Api = {
   save: (counter: Counter): Promise<null> => flakify(() => {
-      localStorage.setItem('__counterValue', counter.value.toString())
-      return null
-    }),
+    localStorage.setItem('__counterValue', counter.value.toString())
+    return null
+  }),
   load: (): Promise<Counter> => flakify(() => {
-      const storedValue = parseInt(localStorage.getItem('__counterValue'), 10)
-      return {
-        value: storedValue || 0,
-      }
-    }),
+    const storedValue = parseInt(localStorage.getItem('__counterValue'), 10)
+    return {
+      value: storedValue || 0,
+    }
+  }),
 }

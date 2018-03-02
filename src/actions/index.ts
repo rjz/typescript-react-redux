@@ -1,28 +1,63 @@
-import * as redux from 'redux'
-
 import { api } from '../api'
+
 import * as state from '../reducers/index'
 
 type Q<T> = { request: T }
 type S<T> = { response: T }
 type E = { error: Error }
 
-type QEmpty = Q<null>
+type QEmpty = Q<{}>
 type QValue = Q<{ value: number }>
 
-export type Action =
-// UI actions
-   { type: 'INCREMENT_COUNTER', delta: number }
-|  { type: 'RESET_COUNTER' }
+export interface Dispatch<A> {
+  (a: A): A
+}
 
-// API Requests
-| ({ type: 'SAVE_COUNT_REQUEST' } & QValue)
+type _T = Action['type']
+
+type APIActionGroup<TQ extends _T, TS extends _T, TE extends _T, _Q, _S> =
+  ({ type: TQ } & Q<_Q>)
+| ({ type: TS } & Q<_Q> & S<_S>)
+| ({ type: TE } & Q<_Q> & E)
+
+type Thunk<Q, S> = (request: Q) => Promise<S>
+
+const createThunkAction = <Q, S, TQ extends _T, TS extends _T, TE extends _T>
+  (fn: Thunk<Q, S>, tq: TQ, ts: TS, te: TE) =>
+    (request: Q) =>
+      (dispatch: Dispatch<APIActionGroup<TQ, TS, TE, Q, S>>) => {
+        dispatch({ type: tq, request })
+        fn(request)
+          .then(response => dispatch({ type: ts, request, response }))
+          .catch(error => dispatch({ type: te, request, error }))
+      }
+
+type LoadAction =
+  ({ type: 'LOAD_COUNT_REQUEST' } & QEmpty)
+| ({ type: 'LOAD_COUNT_SUCCESS' } & QEmpty & S<{ value: number }>)
+| ({ type: 'LOAD_COUNT_ERROR'   } & QEmpty & E)
+
+type SaveAction =
+  ({ type: 'SAVE_COUNT_REQUEST' } & QValue)
 | ({ type: 'SAVE_COUNT_SUCCESS' } & QValue & S<{}>)
 | ({ type: 'SAVE_COUNT_ERROR'   } & QValue & E)
 
-| ({ type: 'LOAD_COUNT_REQUEST' } & QEmpty)
-| ({ type: 'LOAD_COUNT_SUCCESS' } & QEmpty & S<{ value: number }>)
-| ({ type: 'LOAD_COUNT_ERROR'   } & QEmpty & E)
+export type Action =
+  LoadAction
+| SaveAction
+// UI actions
+|  { type: 'INCREMENT_COUNTER', delta: number }
+|  { type: 'RESET_COUNTER' }
+
+export const saveCount = createThunkAction(api.save,
+  'SAVE_COUNT_REQUEST',
+  'SAVE_COUNT_SUCCESS',
+  'SAVE_COUNT_ERROR')
+
+export const loadCount = createThunkAction(api.load,
+  'LOAD_COUNT_REQUEST',
+  'LOAD_COUNT_SUCCESS',
+  'LOAD_COUNT_ERROR')
 
 export const incrementCounter = (delta: number): Action => ({
   type: 'INCREMENT_COUNTER',
@@ -32,41 +67,3 @@ export const incrementCounter = (delta: number): Action => ({
 export const resetCounter = (): Action => ({
   type: 'RESET_COUNTER',
 })
-
-export type ApiActionGroup<_Q, _S> = {
-  request: (q?: _Q)         => Action & Q<_Q>
-  success: (s: _S, q?: _Q)  => Action & Q<_Q> & S<_S>
-  error: (e: Error, q?: _Q) => Action & Q<_Q> & E
-}
-
-const _saveCount: ApiActionGroup<{ value: number }, {}> = {
-  request: (request) =>
-    ({ type: 'SAVE_COUNT_REQUEST', request }),
-  success: (response, request) =>
-    ({ type: 'SAVE_COUNT_SUCCESS', request, response }),
-  error: (error, request) =>
-    ({ type: 'SAVE_COUNT_ERROR',   request, error }),
-}
-
-const _loadCount: ApiActionGroup<null, { value: number }> = {
-  request: (request) =>
-    ({ type: 'LOAD_COUNT_REQUEST', request: null }),
-  success: (response, request) =>
-    ({ type: 'LOAD_COUNT_SUCCESS', request: null, response }),
-  error: (error, request) =>
-    ({ type: 'LOAD_COUNT_ERROR',   request: null, error }),
-}
-
-type apiFunc<Q, S> = (q: Q) => Promise<S>
-
-function apiActionGroupFactory<Q, S>(x: ApiActionGroup<Q, S>, go: apiFunc<Q, S>) {
-  return (request: Q) => (dispatch: redux.Dispatch<state.All>) => {
-    dispatch(x.request(request))
-    go(request)
-      .then((response) => dispatch(x.success(response, request)))
-      .catch((e: Error) => dispatch(x.error(e, request)))
-  }
-}
-
-export const saveCount = apiActionGroupFactory(_saveCount, api.save)
-export const loadCount = () => apiActionGroupFactory(_loadCount, api.load)(null)
