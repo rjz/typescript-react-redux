@@ -11,7 +11,7 @@ With step-by-step instructions:
   4. [TypeScript and Redux: unit testing with Jest][article-4] ([84ff69b](https://github.com/rjz/typescript-react-redux/commit/84ff69b))
   5. [Integrating TypeScript and redux-thunk][article-5] ([4859392](https://github.com/rjz/typescript-react-redux/commit/4859392))
   6. [DRY-ing up with higher order components][article-6] ([002e3bd](https://github.com/rjz/typescript-react-redux/commit/002e3bd))
-  7. [Generic Redux actions][article-7] ([5278678](https://github.com/rjz/typescript-react-redux/commit/5278678))
+  7. [Generic Redux actions][article-7] ([67718f4](https://github.com/rjz/typescript-react-redux/commit/67718f4))
 
 And a live [demo][demo].
 
