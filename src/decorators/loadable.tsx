@@ -5,7 +5,7 @@ import * as React from 'react'
 export default function loadable<P>(isLoading: (p: P) => boolean) {
   // Return a higher-order component implementing the "loadable" behavior
   // See: https://goo.gl/TxPPCw
-  return (C: React.ComponentClass<P>|React.SFC<P>): React.SFC<P> => {
+  return (C: React.ComponentType<P>): React.SFC<P> => {
     const LoadableComponent: React.SFC<P> = (props) => {
       if (isLoading(props)) {
         return <div>Just a moment, please...</div>
