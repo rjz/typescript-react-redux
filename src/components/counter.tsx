@@ -43,9 +43,9 @@ const mapDispatchToProps = (dispatch: redux.Dispatch<state.All>): ConnectedDispa
   increment: (n: number) =>
     dispatch(incrementCounter(n)),
   load: () =>
-    dispatch(loadCount({})),
+    loadCount({})(dispatch),
   save: (value: number) =>
-    dispatch(saveCount({ value })),
+    saveCount({ value })(dispatch),
 })
 
 class PureCounter extends React.Component<ConnectedState & ConnectedDispatch & OwnProps, {}> {
