@@ -27,7 +27,7 @@ Install and build demo application:
 
 ## Tests
 
-[![Build Status](https://travis-ci.org/rjz/typescript-react-redux.svg?branch=feature%2Fci)](https://travis-ci.org/rjz/typescript-react-redux) [![Coverage Status](https://coveralls.io/repos/github/rjz/typescript-react-redux/badge.svg?branch=feature%2Fci)](https://coveralls.io/github/rjz/typescript-react-redux?branch=feature%2Fci)
+[![Build Status](https://travis-ci.org/rjz/typescript-react-redux.svg?branch=feature%2Fci)](https://travis-ci.org/rjz/typescript-react-redux) [![Coverage Status](https://coveralls.io/repos/github/rjz/typescript-react-redux/badge.svg?branch=feature%2Fci)](https://coveralls.io/github/rjz/typescript-react-redux?branch=feature%2Fci) [![Greenkeeper badge](https://badges.greenkeeper.io/rjz/typescript-react-redux.svg)](https://greenkeeper.io/)
 
     $ npm test
 
