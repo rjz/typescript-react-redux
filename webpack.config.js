@@ -1,5 +1,3 @@
-var failPlugin = require('webpack-fail-plugin');
-
 // https://www.typescriptlang.org/docs/handbook/react-&-webpack.html
 module.exports = {
   entry: './src/index.tsx',
@@ -15,8 +13,6 @@ module.exports = {
     // add '.ts' and '.tsx' as resolvable extensions.
     extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js']
   },
-
-  plugins: [ failPlugin ],
 
   module: {
     rules: [
