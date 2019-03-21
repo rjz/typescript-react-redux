@@ -9,6 +9,7 @@ import {
 } from '../actions'
 
 import { compose } from '../utils'
+import { Action } from '../actions'
 import * as state from '../reducers'
 
 import loadable from '../decorators/loadable'
@@ -39,7 +40,7 @@ const mapStateToProps = (state: state.All, ownProps: OwnProps): ConnectedState =
   error: state.error,
 })
 
-const mapDispatchToProps = (dispatch: redux.Dispatch<state.All>): ConnectedDispatch => ({
+const mapDispatchToProps = (dispatch: redux.Dispatch<Action>): ConnectedDispatch => ({
   increment: (n: number) =>
     dispatch(incrementCounter(n)),
   load: () =>
@@ -48,7 +49,7 @@ const mapDispatchToProps = (dispatch: redux.Dispatch<state.All>): ConnectedDispa
     saveCount({ value })(dispatch),
 })
 
-class PureCounter extends React.Component<ConnectedState & ConnectedDispatch & OwnProps, {}> {
+export class PureCounter extends React.Component<ConnectedState & ConnectedDispatch & OwnProps, {}> {
 
   _onClickIncrement = (e: React.SyntheticEvent<HTMLButtonElement>) => {
     e.preventDefault()
