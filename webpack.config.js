@@ -11,14 +11,13 @@ module.exports = {
 
   resolve: {
     // add '.ts' and '.tsx' as resolvable extensions.
-    extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js']
+    extensions: ['.js', '.ts', '.tsx']
   },
 
   module: {
     rules: [
       // all files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'.
-      { test: /\.tsx?$/, loader: 'babel-loader?presets[]=es2015!ts-loader' },
-      { test: /\.js$/, enforce: 'pre', loader: 'source-map-loader' },
+      { test: /\.tsx?$/, loader: 'ts-loader' },
     ],
   },
 

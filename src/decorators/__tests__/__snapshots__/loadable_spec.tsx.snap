@@ -1,3 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`decorators/loadable maps props to loading 1`] = `<TestComponent />`;
+exports[`decorators/loadable handles loaded state 1`] = `
+<div>
+  OK
+</div>
+`;
+
+exports[`decorators/loadable handles loading state 1`] = `
+<div>
+  Just a moment, please...
+</div>
+`;

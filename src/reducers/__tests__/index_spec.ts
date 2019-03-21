@@ -3,13 +3,14 @@ import reducers, {
 } from '../index'
 
 import {
+  Action,
   incrementCounter
 } from '../../actions'
 
-const resultOf = actions =>
+const resultOf = (actions: Action[]) =>
   actions.reduce(reducers, initialState)
 
-describe('reducers/counter', () => {
+describe.only('reducers/counter', () => {
   it('starts at 0', () =>
     expect(resultOf([])).toMatchSnapshot())
 

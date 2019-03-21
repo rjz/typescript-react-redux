@@ -2,6 +2,7 @@ jest.mock('../../api')
 
 import { createStore } from 'redux'
 import * as apiExports from '../../api'
+import { Action } from '../action'
 import * as actions from '../index'
 
 const api: jest.Mocked<apiExports.Api> = apiExports.api as any
@@ -14,7 +15,7 @@ describe('actions', () => {
     return { dispatch, reducer }
   }
 
-  const eventually = (assertFn) =>
+  const eventually = (assertFn: () => void) =>
     new Promise((resolve, reject) => {
       setTimeout(() => {
         try {
@@ -26,7 +27,7 @@ describe('actions', () => {
       }, 1)
     })
 
-  const expectTypes = (reducer, types) =>
+  const expectTypes = (reducer: jest.Mock, types: Action['type'][]) =>
     () =>
       expect(reducer.mock.calls.map(x => x[1].type)).toEqual(types)
 
@@ -90,14 +91,14 @@ describe('actions', () => {
     })
 
     it('sends an API request', () => {
-      actions.loadCount()(jest.fn())
+      actions.loadCount({})(jest.fn())
       expect(api.load.mock.calls.length).toEqual(1)
     })
 
     describe('when API request succeeds', () => {
       it('dispatches LOAD_COUNT_SUCCESS', () => {
         const { dispatch, reducer } = store()
-        actions.loadCount()(dispatch)
+        actions.loadCount({})(dispatch)
         return eventually(expectTypes(reducer, [
           'LOAD_COUNT_REQUEST',
           'LOAD_COUNT_SUCCESS',
@@ -106,7 +107,7 @@ describe('actions', () => {
 
       it('includes new value with LOAD_COUNT_SUCCESS', () => {
         const { dispatch, reducer } = store()
-        actions.loadCount()(dispatch)
+        actions.loadCount({})(dispatch)
         return eventually(() => {
           expect(reducer.mock.calls[1][1].response).toEqual({ value: 14 })
         })
@@ -120,7 +121,7 @@ describe('actions', () => {
 
       it('dispatches LOAD_COUNT_ERROR', () => {
         const { dispatch, reducer } = store()
-        actions.loadCount()(dispatch)
+        actions.loadCount({})(dispatch)
         return eventually(expectTypes(reducer, [
           'LOAD_COUNT_REQUEST',
           'LOAD_COUNT_ERROR',
@@ -129,7 +130,7 @@ describe('actions', () => {
 
       it('includes error message with LOAD_COUNT_ERROR', () => {
         const { dispatch, reducer } = store()
-        actions.loadCount()(dispatch)
+        actions.loadCount({})(dispatch)
         return eventually(() => {
           expect(reducer.mock.calls[1][1].error)
             .toEqual('something terrible happened')
